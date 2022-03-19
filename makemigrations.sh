@@ -1,0 +1,1 @@
+docker exec -it skf_video_editor_api sh -c "python manage.py makemigrations"

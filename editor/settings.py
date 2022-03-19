@@ -23,10 +23,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'l&208s@qszmw36@1_@^%p8=gvwt7&o&4%(rf#(=&ny=w0y!)f*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(os.environ.get('DEBUG', 1)))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["0.0.0.0", "localhost", '127.0.0.1']
 
+# Azure Credentials 
+
+AZURE_ACC_NAME = os.environ.get("AZURE_ACC_NAME")
+AZURE_PRIMARY_KEY = os.environ.get("AZURE_PRIMARY_KEY")
+AZURE_CONTAINER = os.environ.get("AZURE_CONTAINER")
+
+# AWS Credentials
+
+AWS_S3_BUCKET = os.environ.get("AWS_S3_BUCKET")
+AWS_S3_ACCESS_KEY_ID = os.environ.get("AWS_S3_ACCESS_KEY_ID")
+AWS_S3_SECRET_KEY = os.environ.get("AWS_S3_SECRET_KEY")
 
 # Application definition
 
@@ -37,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'api'
 ]
 
 MIDDLEWARE = [
@@ -73,10 +85,18 @@ WSGI_APPLICATION = 'editor.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# print(os.environ.get('DB_HOST'))
 DATABASES = {
+    
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': os.environ.get('DB_HOST'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+        }
     }
 }
 
