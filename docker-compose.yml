@@ -1,0 +1,24 @@
+version : "3"
+
+services:
+  app:
+    container_name: "skf_video_editor_api"
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DB_HOST=DB_HOST
+      - DB_USER=DB_USER
+      - DB_NAME=DB_NAME
+      - DB_PASS=DB_PASS
+      - AWS_S3_BUCKET=AWS_S3_BUCKET
+      - AWS_S3_ACCESS_KEY_ID=AWS_S3_ACCESS_KEY_ID
+      - AWS_S3_SECRET_KEY=AWS_S3_SECRET_KEY
+      - AZURE_ACC_NAME=AZURE_ACC_NAME
+      - AZURE_CONTAINER=AZURE_CONTAINER
+      - AZURE_PRIMARY_KEY=AZURE_PRIMARY_KEY
