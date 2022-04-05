@@ -3,9 +3,9 @@ from api import views
 from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 
-urlpatterns = [
-    ## Example signup
-    ## path('signup/', views.UserAccountAPIView.as_view()),
+router.register('developer', views.DeveloperViewSet)
 
-    path("", include(router.urls))
+urlpatterns = [
+    path('', include(router.urls)),
+    path('developer-login/', views.DeveloperLoginApiView.as_view()),
 ]
