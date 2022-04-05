@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
     'api'
 ]
 
@@ -87,7 +89,6 @@ WSGI_APPLICATION = 'editor.wsgi.application'
 
 # print(os.environ.get('DB_HOST'))
 DATABASES = {
-    
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': os.environ.get('DB_HOST'),
@@ -138,3 +139,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+AUTH_USER_MODEL = 'api.DeveloperModel'
