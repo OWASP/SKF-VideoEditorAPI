@@ -1,5 +1,6 @@
 import enum
 
+
 class APIConstants:
     def __init__(self):
         pass
@@ -9,4 +10,3 @@ class APIConstants:
 
     class AccessTokenMessages(enum.Enum):
         CREDENTIAL_NOT_FOUND = "Unable to authenticate with provided credentials"
-        

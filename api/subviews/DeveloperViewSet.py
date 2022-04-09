@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from api.subviews.utils.constants import APIConstants as constants
 
+
 class DeveloperViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.DeveloperSerializer
     queryset = models.DeveloperModel.objects.all()
@@ -12,9 +13,10 @@ class DeveloperViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     filter_backends = (filters.SearchFilter,)
     search_backends = ('name', 'email', 'organisation')
-    
+
     def create(self, request):
-        serializer = self.serializer_class(data = request.data, context={'request': request})
+        serializer = self.serializer_class(
+            data=request.data, context={'request': request})
         if serializer.is_valid():
             email = serializer.validated_data['email']
             name = serializer.validated_data['name']
@@ -29,5 +31,5 @@ class DeveloperViewSet(viewsets.ModelViewSet):
         else:
             return Response(
                 serializer.errors,
-                status = status.HTTP_400_BAD_REQUEST,
+                status=status.HTTP_400_BAD_REQUEST,
             )

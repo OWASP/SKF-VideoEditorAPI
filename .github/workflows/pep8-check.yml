@@ -1,0 +1,17 @@
+name: PEP8
+on: [push, pull_request]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup Python 3.9
+      uses: actions/setup-python@master
+      with:
+        version: 3.9
+    - name: flake8
+      run: |
+        pip install flake8
+        flake8 . --count --show-source --statistics --max-line-length 200 \
+          --exclude __init__.py,tests.py,models.py,permissions.py,serializers.py,views.py
+        
