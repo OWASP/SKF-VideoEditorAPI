@@ -1,5 +1,5 @@
 name: PEP8
-on: [pull_request]
+on: [push, pull_request]
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -12,4 +12,6 @@ jobs:
     - name: flake8
       run: |
         pip install flake8
-        flake8 . --count --show-source --statistics
+        flake8 . --count --show-source --statistics --max-line-length 200 \
+          --exclude __init__.py,tests.py,models.py,permissions.py,serializers.py,views.py
+        

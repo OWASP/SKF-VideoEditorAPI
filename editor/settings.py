@@ -27,7 +27,7 @@ DEBUG = bool(int(os.environ.get('DEBUG', 1)))
 
 ALLOWED_HOSTS = ["0.0.0.0", "localhost", '127.0.0.1']
 
-# Azure Credentials 
+# Azure Credentials
 
 AZURE_ACC_NAME = os.environ.get("AZURE_ACC_NAME")
 AZURE_PRIMARY_KEY = os.environ.get("AZURE_PRIMARY_KEY")
